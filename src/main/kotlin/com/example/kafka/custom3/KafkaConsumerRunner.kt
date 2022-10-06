@@ -1,7 +1,8 @@
-package com.example.kafka.custom2
+package com.example.kafka.custom3
 
 import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.slf4j.LoggerFactory
+import org.springframework.beans.factory.InitializingBean
 import org.springframework.context.annotation.Configuration
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory
 import org.springframework.kafka.config.KafkaListenerEndpointRegistry
@@ -10,21 +11,21 @@ import org.springframework.messaging.handler.annotation.support.DefaultMessageHa
 import java.util.*
 import kotlin.random.Random
 
-@Configuration("KafkaConsumerRunner2")
+@Configuration("KafkaConsumerRunner3")
 class KafkaConsumerRunner(
     private val kafkaListenerContainerFactory: ConcurrentKafkaListenerContainerFactory<String, String>,
     private val kafkaListenerEndpointRegistry: KafkaListenerEndpointRegistry
-) {
+) : InitializingBean {
 
     private val logger = LoggerFactory.getLogger(this::class.java)
+
+    override fun afterPropertiesSet() {
+        start("export-test")
+    }
 
     fun start(topic: String) {
         val kafkaListenerEndpoint = createEndPoint(topic)
         kafkaListenerEndpointRegistry.registerListenerContainer(kafkaListenerEndpoint, kafkaListenerContainerFactory, true)
-    }
-
-    fun stop(topic: String) {
-        kafkaListenerEndpointRegistry.getListenerContainer(topic)!!.stop()
     }
 
     private fun createEndPoint(topic: String): MethodKafkaListenerEndpoint<String, String> {

@@ -14,3 +14,7 @@ spring:
       bootstrap-servers: localhost:9092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringDeserializer
+
+topics:
+  scheduler-topic: export-scheduler
+  event-topic: export-scheduler
