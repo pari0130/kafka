@@ -20,7 +20,7 @@ class CustomKafkaConsumer {
                 "message=[${message.value()}] with offset=[${message.offset()}]")
     }
 
-    //@CustomKafkaListener(id = "2", topic = "export-test-green", groupId = "export")
+    @CustomKafkaListener(id = "2", topic = "export-test-green", groupId = "export")
     fun onMessage2(message: ConsumerRecord<String?, Any?>) {
         logger.info("Received onMessage2 Message : " +
                 "topic=[${message.topic()}], " +

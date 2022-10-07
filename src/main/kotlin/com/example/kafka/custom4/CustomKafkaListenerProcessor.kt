@@ -78,13 +78,6 @@ class CustomKafkaListenerProcessor(
         if (ann != null) {
             listeners.add(ann)
         }
-        val anns = AnnotationUtils.findAnnotation(
-            method,
-            CustomKafkaListener::class.java
-        )
-        if (anns != null) {
-            listeners.addAll(listOf(anns))
-        }
         return listeners
     }
 }
