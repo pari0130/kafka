@@ -20,7 +20,7 @@ class KafkaConsumerRunner(
     private val logger = LoggerFactory.getLogger(this::class.java)
 
     override fun afterPropertiesSet() {
-        start("export-test")
+        // start("export-test")
     }
 
     fun start(topic: String) {
