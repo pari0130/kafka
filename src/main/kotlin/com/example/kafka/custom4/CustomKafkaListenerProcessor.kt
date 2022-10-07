@@ -28,7 +28,7 @@ class CustomKafkaListenerProcessor(
     private val logger = LoggerFactory.getLogger(this::class.java)
 
     override fun afterPropertiesSet() {
-        start()
+       start()
     }
 
     fun start() {
@@ -47,7 +47,7 @@ class CustomKafkaListenerProcessor(
         return try {
             val kafkaListenerEndpoint = MethodKafkaListenerEndpoint<String, String>()
             // val setTopic = kafkaListener.topic + "-" + System.getenv("ZONE")
-            val setTopic = kafkaListener.topic
+            val setTopic = kafkaListener.topic + "-" + System.getenv("ZONE")
             kafkaListenerEndpoint.setId(setTopic)
             kafkaListenerEndpoint.setGroupId(kafkaListener.groupId)
             kafkaListenerEndpoint.setAutoStartup(kafkaListener.autoStartup)
